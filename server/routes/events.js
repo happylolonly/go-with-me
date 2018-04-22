@@ -57,4 +57,40 @@ export default app => {
             res.send(error);
         }
     });
+
+
+    app.delete('/api/events', requireLogin, async (req, res) => {
+        // const events = await Event.find({})
+        const { id } = req.query;
+
+
+        const user = await User.findById(req.user._id);
+
+        const events = user.events.toObject();
+
+        const e = events.filter(item => item._id.toString() !== id);
+
+        const f = await User.update({_id: req.user._id }, { events: 
+            e   });
+
+        res.send('success');
+    });
+
+
+    app.get('/api/event', requireLogin, async (req, res) => {
+        // const events = await Event.find({})
+
+        const { id } = req.query;
+
+
+        const user = await User.findById(req.user._id);
+
+        const events = user.events.toObject();
+
+        const event = events.filter(item => {
+            return item._id.toString() === id;
+        })[0];
+
+        res.send(event);
+    });
 }

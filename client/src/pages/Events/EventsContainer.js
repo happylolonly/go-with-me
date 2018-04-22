@@ -37,6 +37,21 @@ class Campaigns extends Component {
 
   }
 
+  async deleteEvent(id) {
+
+    try {
+        const data = await axios.delete(`${API}/events?id=${id}`);
+        
+        this.loadEvents();
+
+        // const events = data.data;
+        // this.setState({ events })
+    } catch (error) {
+        console.log(error);
+    }
+
+  }
+
   render() {
     return (
         <div>
@@ -46,11 +61,12 @@ class Campaigns extends Component {
             <Link to="/events/new">Создать новое</Link>
 
             {this.state.events.map(item => {
-                const { id, title } = item;
+                const { _id: id, title } = item;
                 return (
                     <div>
                         <h5>{title}</h5>
-                        {/* <Link to={`/friends/${id}`}>View</Link> */}
+                        <Link to={`/events/${id}`}>Посмотреть</Link>
+                        <button onClick={() => this.deleteEvent(id)}>удалить</button>
                     </div>
                 )
             })}

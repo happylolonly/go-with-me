@@ -1,142 +1,159 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
+import Event from './Event';
+
+import axios from 'axios';
 import { API } from 'constants/config';
+
 import { browserHistory } from 'react-router';
 
-import { Input, Select, Textarea } from 'components/common';
 
 const propTypes = {
-    
-}
+    // потом тут будет redux
+};
 
+class EventContainer extends Component {
+    constructor(props) {
+        super(props);
 
-class Campaigns extends Component {
-  constructor() {
-    super();
+        this.state = {
+            data: {
+                title: '',
+                link: '',
+                description: '',
+                list: '',
+            },
+            errors: {},
+            lists: {},
+            serverError: null,
+        };
 
-    this.state = {
-        events: [],
-        data: {
-            title: '',
-            link: '',
-            description: '',
-        },
-        lists: []
+        this.isNew = !this.props.params.id;
+
+        this.handleChange = this.handleChange.bind(this);
+        this.createEvent = this.createEvent.bind(this);
+        this.updateEvent = this.updateEvent.bind(this);
     }
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    componentDidMount() {
 
-  }
+        if (!this.isNew) {
+            this.loadEvent();
+        }
 
-  componentDidMount() {
-      this.loadLists();
-  }
-
-  handleChange(value, name) {
-      this.setState({
-          data: {
-              ...this.state.data,
-              [name]: value,
-          }
-      })
-  }
-
-  async loadLists() {
-
-      try {
-        const data = await axios.get(`${API}/lists`);
-    
-        const lists = data.data;
-        this.setState({ lists })
-    } catch (error) {
-        console.log(error);
+        this.loadLists();
     }
 
-  }
+    async loadEvent() {
 
-  async createEvent() {
+        try {
+            const data = await axios.get(`${API}/event?id=${this.props.params.id}`);
+            const event = data.data;
 
-    try {
-      await axios.post(`${API}/events`, this.state.data);
+            delete event._id;
 
-      alert('Мероприятие создано');
+            this.setState({ data: { ...event } });
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
 
-      browserHistory.push('/events');
-  
-    //   this.setState({ events })
-  } catch (error) {
-      console.log(error);
-  }
+    }
 
+    async loadLists() {
+
+        try {
+            const data = await axios.get(`${API}/lists`);
+            const lists = data.data;
+
+            const formattedLists = {};
+
+            lists.forEach(item => {
+                formattedLists[item._id] = item.title;
+            });
+
+            this.setState({ lists: formattedLists });
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
+
+    }
+
+    async createEvent() {
+
+        try {
+            await axios.post(`${API}/events`, this.state.data);
+
+            browserHistory.push('/events');
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
+
+    }
+
+    async updateEvent() {
+
+        try {
+            await axios.put(`${API}/event`, this.state.data);
+
+            browserHistory.push('/events');
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
+
+    }
+
+    handleChange(value, name) {
+
+        this.setState({
+            data: {
+                ...this.state.data,
+                [name]: value,
+            },
+            errors: {
+                ...this.state.errors,
+                [name]: '',
+            }
+        });
+
+    }
+
+    render() {
+        const { data, errors, lists } = this.state;
+
+        return (
+            <div className="event-page">
+
+                <Event
+                    title={data.title}
+                    link={data.link}
+                    description={data.description}
+                    list={data.list}
+
+                    titleError={errors.title}
+                    linkError={errors.link}
+                    listError={errors.list}
+
+                    lists={lists}
+
+                    handleData={this.handleChange}
+                    createEvent={this.createEvent}
+                    updateEvent={this.updateEvent}
+
+                    isNew={this.isNew}
+                />
+
+                {this.state.serverError && <div className="error">{this.state.serverError}</div>}
+
+            </div>
+        )
+    }
 }
 
-  handleSubmit() {
-      this.createEvent();
-  }
+EventContainer.propTypes = propTypes;
 
-  render() {
-
-    console.log(this.state)
-
-    const obj = {};
-    this.state.lists.forEach(item => {
-                obj[item._id] =  item.title  
-    });
-
-    console.log(obj)
-
-
-    return (
-        <div>
-            <h2>Создать мероприятие</h2>
-
-
-            <Input
-                title="Название мероприятия"
-                name="title"
-                // placeholder="Имя"
-                onChange={this.handleChange}
-                value={this.state.data.title}
-            />
-
-            <Input
-                title="Ссылка на мероприятие"
-                name="link"
-
-                // placeholder="Ссылка"
-                onChange={this.handleChange}
-                value={this.state.data.link}
-            />
-
-            <Textarea
-                title="Описание мероприятия"
-                name="description"
-
-                // placeholder="Имя"
-                onChange={this.handleChange}
-                value={this.state.data.description}
-            />
-
-
-            <Select
-                title="Список друзей"
-                name="list"
-                // placeholder="Ссылка"
-                options={obj}
-                onChange={this.handleChange}
-                value={this.state.data.list}
-            />
-
-    
-            <button onClick={this.handleSubmit}>Создать мероприятие</button>
-        </div>
-    )
-  }
-}
-
-Campaigns.propTypes = propTypes;
-
-export default Campaigns;
+export default EventContainer;
