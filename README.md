@@ -1,17 +1,15 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com)
 
-[![Build Status](https://travis-ci.org/happylolonly/events-free-spa.svg?branch=dev)](https://travis-ci.org/happylolonly/events-free-spa)
-[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/happylolonly)
+[![Build Status](https://travis-ci.org/happylolonly/go-with-me.svg?branch=master)](https://travis-ci.org/happylolonly/go-with-me)
 
+# Go with me
+## SPA для быстрой отправки приглашений на мероприятие всем твоим друзьям!
 
-# Events Free
-## SPA для собирания всех бесплатных мероприятий в одном месте
+https://go-with-me-spa.herokuapp.com/
 
-https://eventsfree.by
-
-Приложение автоматически собирает бесплатные мероприятия с различных сайтов, показывая все в одном месте.
+Приложение позволяет создавать списки друзей с разных источников (вк, фейсбук, телеграм, почта и тд) и отправлять им всем приглашение на какое-нибудь мероприятие за один раз.
 
 Технологии:
 
@@ -26,14 +24,17 @@ Backend:
 - Node.js
 - Express
 - MongoDB
-- Redis
 
 Deploy:
 
 - Heroku
 - Travis CI
 
-![new mockup 1](https://user-images.githubusercontent.com/18665326/37930931-d368319e-314c-11e8-95e9-a119c628295b.png)
+Messages API:
+
+- VK
+- Facebook
+- ect. (in future)
 
 ##
 
