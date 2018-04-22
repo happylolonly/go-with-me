@@ -9,6 +9,7 @@ export default (app) => {
   require('./events').default(app);
   require('./friends').default(app);
   require('./lists').default(app);
+  require('./auth')(app);
   // require('./logs')(app);
 
 }

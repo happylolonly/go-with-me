@@ -5,6 +5,12 @@
 // import cron from 'node-cron';
 // import moment from 'moment';
 import mongoose from 'mongoose';
+const cookieSession = require('cookie-session');
+
+
+
+const passport = require('passport');
+
 
 
 const express = require('express');
@@ -15,10 +21,33 @@ import db from './helpers/db';
 const app = express();
 const port = process.env.PORT || 3090;
 
+require('./models/User');
+
 
 const server = app.listen(port, () => {
   console.log('Server ready on:', port);
 });
+
+const keys = {
+  cookieKey: '123456',
+}
+
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+);
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
+
 
 
 
@@ -54,6 +83,8 @@ const server = app.listen(port, () => {
 // const app = express();
 // app.use('/facebook', bot.router());
 // app.listen(3000);
+
+require('./services/passport');
 
 
 
