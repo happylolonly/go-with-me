@@ -1,5 +1,7 @@
-import Friend from '../model/friend';
-import List from '../model/list';
+import Friend from '../models/friend';
+// import List from '../models/list';
+import User from '../models/User';
+
 
 import { Bot } from 'node-vk-bot'
 
@@ -12,16 +14,31 @@ const bot = new Bot({
 
 
 export default {
-    async send({title, description, link, list}) {
+    async send({title, description, link, list, id}) {
 
         return new Promise( async (resolve, reject) => {
 
-            const listObj = await List.findById(list);
+            const user = (await User.findById(id)).toObject();
+
+
+            const lists = user.lists;
+
+            const listObj = lists.filter(item => {
+                return item._id.toString() === list
+            })[0];
+
+
+            // const listObj = await List.findById(list);
 
             const friends = [];
 
             for (let item of listObj.friends) {
-                const friend = await Friend.findById(item);
+                // const friend = await Friend.findById(item);
+                const friend = user.friends.filter(item2 => item2._id.toString() === item)[0];
+
+                // убрать костыль перенеся проверку на фронт
+                if (!friend) continue;
+
 
                 if (friend.link.includes('id')) {
                     friend.link = friend.link.split('id')[1];
@@ -30,9 +47,7 @@ export default {
 
             }   
             
-
             friends.forEach(item => {
-
     
                 bot.send(`
                     Твой друг зовет тебя!

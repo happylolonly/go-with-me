@@ -10,6 +10,6 @@ export default (app) => {
   require('./friends').default(app);
   require('./lists').default(app);
   require('./auth')(app);
+  require('./users').default(app);
   // require('./logs')(app);
-
 }
