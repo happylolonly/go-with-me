@@ -5,13 +5,27 @@
 [![Build Status](https://travis-ci.org/happylolonly/go-with-me.svg?branch=master)](https://travis-ci.org/happylolonly/go-with-me)
 
 # Go with me
-## SPA для быстрой отправки приглашений на мероприятие всем твоим друзьям!
+## Приложение для быстрой отправки приглашений на мероприятия всем твоим друзьям!
 
 https://go-with-me-spa.herokuapp.com/
 
+[Задачи](https://github.com/happylolonly/go-with-me/issues)  
+[Доска](https://github.com/happylolonly/go-with-me/projects)
+
+[VK API public](https://vk.com/public165270834) - вк паблик для отправки уведомлений (необходимо подписаться)
+
+
 Приложение позволяет создавать списки друзей с разных источников (вк, фейсбук, телеграм, почта и тд) и отправлять им всем приглашение на какое-нибудь мероприятие за один раз.
 
-Технологии:
+#### Запуск:
+
+1. Скопировать репозиторий
+2. Поставить [Node.js](https://nodejs.org/en) (8+ версия)
+3. Из папки выполнить команду `npm install`
+4. Клиент - `npm start` и перейти на http://localhost:3000
+5. Сервер - `npm run ss` и перейти на http://localhost:3090
+
+#### Технологии:
 
 Frontend:
 
