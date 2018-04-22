@@ -50,9 +50,8 @@ passport.use(new VKontakteStrategy(
     {
       clientID:     VKONTAKTE_APP_ID, // VK.com docs call it 'API ID', 'app_id', 'api_id', 'client_id' or 'apiId'
       clientSecret: VKONTAKTE_APP_SECRET,
-      callbackURL:  "http://localhost:3090/auth/google/callback",
-            // proxy: true
-
+      callbackURL:  "/auth/google/callback",
+      proxy: true
     },
     async function myVerifyCallbackFn(accessToken, refreshToken, params, profile, done) {
   
