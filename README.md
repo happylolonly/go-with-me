@@ -7,7 +7,7 @@
 # Go with me
 ## Приложение для быстрой отправки приглашений на мероприятия всем твоим друзьям!
 
-https://go-with-me-spa.herokuapp.com/
+https://go-with-me-spa.herokuapp.com
 
 [Задачи](https://github.com/happylolonly/go-with-me/issues)  
 [Доска](https://github.com/happylolonly/go-with-me/projects/1)
