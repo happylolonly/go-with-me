@@ -6,6 +6,7 @@
 // import moment from 'moment';
 import mongoose from 'mongoose';
 const cookieSession = require('cookie-session');
+import path from 'path';
 
 
 
@@ -98,6 +99,5 @@ require('./middlewares').default(app, express);
 require('./routes').default(app);
 
 app.use((req, res, next) => {
-    // res.sendFile(path.join(__dirname, '/static/build/index.html'));
-    res.send('item')
+    res.sendFile(path.join(__dirname, '/static/build/index.html'));
 });
