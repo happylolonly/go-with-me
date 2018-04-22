@@ -34,6 +34,8 @@ class EventContainer extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.createEvent = this.createEvent.bind(this);
         this.updateEvent = this.updateEvent.bind(this);
+        this.deleteEvent = this.deleteEvent.bind(this);
+        this.validate = this.validate.bind(this);
     }
 
     componentDidMount() {
@@ -97,7 +99,23 @@ class EventContainer extends Component {
     async updateEvent() {
 
         try {
-            await axios.put(`${API}/event`, this.state.data);
+            await axios.put(`${API}/event`, {
+                id: this.props.params.id,
+                ...this.state.data
+            });
+
+            browserHistory.push('/events');
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
+
+    }
+
+    async deleteEvent() {
+
+        try {
+            await axios.delete(`${API}/events?id=${this.props.params.id}`);
 
             browserHistory.push('/events');
         } catch (error) {
@@ -122,6 +140,30 @@ class EventContainer extends Component {
 
     }
 
+    validate() {
+        const errors = {};
+
+        const { title, link, list } = this.state.data;
+
+        if (!title) {
+            errors.title = 'Необходимо написать название мероприятия';
+        }
+
+        if (!link) {
+            errors.link = 'Необходимо поставить ссылку на мероприятие';
+        }
+
+        if (!list) {
+            errors.list = 'Необходимо выбрать список друзей';
+        }
+
+        if (Object.keys(errors).length) {
+            this.setState({ errors });
+            return false;
+        }
+        return true;
+    }
+
     render() {
         const { data, errors, lists } = this.state;
 
@@ -143,6 +185,8 @@ class EventContainer extends Component {
                     handleData={this.handleChange}
                     createEvent={this.createEvent}
                     updateEvent={this.updateEvent}
+                    deleteEvent={this.deleteEvent}
+                    validate={this.validate}
 
                     isNew={this.isNew}
                 />

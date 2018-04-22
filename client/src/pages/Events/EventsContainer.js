@@ -1,83 +1,75 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
+import Events from './Events';
+
+import axios from 'axios';
 import { API } from 'constants/config';
-import { Link } from 'react-router';
+
 
 const propTypes = {
-    
-}
+    // потом тут будет redux
+};
 
+class EventsContainer extends Component {
+    constructor() {
+        super();
 
-class Campaigns extends Component {
-  constructor() {
-    super();
+        this.state = {
+            events: [],
+            serverError: null,
+        };
 
-    this.state = {
-        events: []
+        this.deleteEvent = this.deleteEvent.bind(this);
     }
 
-  }
-
-  componentDidMount() {
-      this.loadEvents();
-  }
-
-  async loadEvents() {
-
-      try {
-        const data = await axios.get(`${API}/events`);
-    
-        const events = data.data;
-        this.setState({ events })
-    } catch (error) {
-        console.log(error);
-    }
-
-  }
-
-  async deleteEvent(id) {
-
-    try {
-        const data = await axios.delete(`${API}/events?id=${id}`);
-        
+    componentDidMount() {
         this.loadEvents();
-
-        // const events = data.data;
-        // this.setState({ events })
-    } catch (error) {
-        console.log(error);
     }
 
-  }
+    async loadEvents() {
 
-  render() {
-    return (
-        <div>
-            <h2>Мероприятия</h2>
-            <p>Создавай мероприятия и все твои друзья узнают про него!</p>
+        try {
+            const data = await axios.get(`${API}/events`);
+            const events = data.data;
 
-            <Link to="/events/new">Создать новое</Link>
+            this.setState({ events })
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
 
-            {this.state.events.map(item => {
-                const { _id: id, title } = item;
-                return (
-                    <div>
-                        <h5>{title}</h5>
-                        <Link to={`/events/${id}`}>Посмотреть</Link>
-                        <button onClick={() => this.deleteEvent(id)}>удалить</button>
-                    </div>
-                )
-            })}
+    }
 
+    async deleteEvent(id) {
 
-        
-        </div>
-    )
-  }
+        try {
+            await axios.delete(`${API}/events?id=${id}`);
+
+            this.loadEvents();
+        } catch (error) {
+            console.log(error);
+            this.setState({ serverError: JSON.stringify(error) });
+        }
+
+    }
+
+    render() {
+        return (
+            <div className="events-page">
+
+                <Events
+                    events={this.state.events}
+                    deleteEvent={this.deleteEvent}
+                />
+
+                {this.state.serverError && <div className="error">{this.state.serverError}</div>}
+
+            </div>
+        )
+    }
 }
 
-Campaigns.propTypes = propTypes;
+EventsContainer.propTypes = propTypes;
 
-export default Campaigns;
+export default EventsContainer;

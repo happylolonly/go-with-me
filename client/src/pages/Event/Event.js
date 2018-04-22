@@ -22,14 +22,18 @@ const propTypes = {
     handleData: PropTypes.func.isRequired,
     createEvent: PropTypes.func.isRequired,
     updateEvent: PropTypes.func.isRequired,
+    deleteEvent: PropTypes.func.isRequired,
+    validate: PropTypes.func.isRequired,
 
     isNew: PropTypes.bool.isRequired,
 };
 
-const Event = ({ title, link, description, list, titleError, linkError, listError, lists, handleData, createEvent, updateEvent, isNew }) => {
+const Event = ({ title, link, description, list, titleError, linkError, listError, lists, handleData, createEvent, updateEvent, deleteEvent, validate, isNew }) => {
 
     const handleSubmit = () => {
-        isNew ? createEvent() : updateEvent();
+        if (validate()) {
+            isNew ? createEvent() : updateEvent();
+        }
     }
 
     return (
@@ -70,6 +74,7 @@ const Event = ({ title, link, description, list, titleError, linkError, listErro
 
             <Link to="/events">Вернуться</Link>
             <button onClick={handleSubmit}>{isNew ? 'Создать' : 'Изменить'}</button>
+            {!isNew && <button onClick={deleteEvent}>Удалить</button>}
         </div>
     )
 }
