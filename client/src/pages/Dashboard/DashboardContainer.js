@@ -29,6 +29,9 @@ class Campaigns extends Component {
 
     const user = data.data;
 
+    if (!user) {
+      window.location = '/'; // костыль
+    }
 
     this.setState({ user });
   }

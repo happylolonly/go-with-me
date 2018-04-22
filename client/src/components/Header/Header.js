@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
+import axios from 'axios';
+import { API } from 'constants/config';
+
+
 import './Header.scss';
 
 
@@ -21,6 +25,13 @@ const Header = () => {
         <li><Link to='/about'>О приложении</Link></li>
         <li><Link to='/settings'>Настройки</Link></li>
       </ul> */}
+
+      <button onClick={() => {
+        axios.get(`${API}/logout`);
+        setTimeout(() => {
+          window.location = '/';
+        }, 500);
+      }}>выйти</button>
       <p>Go with me</p>
       <p>шапка</p>
     </div>
