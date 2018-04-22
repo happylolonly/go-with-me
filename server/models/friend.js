@@ -8,6 +8,6 @@ const FeedbackSchema = new Schema({
   link: String,
 });;
 
-const Feedback = mongoose.model('friend', FeedbackSchema);
+// const Feedback = mongoose.model('friend', FeedbackSchema);
 
-module.exports = Feedback;
+module.exports = FeedbackSchema;

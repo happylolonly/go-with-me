@@ -6,6 +6,6 @@ const FeedbackSchema = new Schema({
   friends: Array,
 });;
 
-const Feedback = mongoose.model('list', FeedbackSchema);
+// const Feedback = mongoose.model('list', FeedbackSchema);
 
-module.exports = Feedback;
+module.exports = FeedbackSchema;

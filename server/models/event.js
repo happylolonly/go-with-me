@@ -8,9 +8,9 @@ const EventSchema = new Schema({
   description: String,
 });
 
-const Event = mongoose.model('event', EventSchema);
+// const Event = mongoose.model('event', EventSchema);
 
-module.exports = Event;
+module.exports = EventSchema;
 
 // EventSchema.virtual('eventsCount').get(function() {
 //   return this.posts.length;
