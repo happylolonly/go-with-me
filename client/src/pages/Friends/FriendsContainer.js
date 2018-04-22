@@ -7,7 +7,7 @@ import { Link } from 'react-router';
 
 const propTypes = {
     
-}
+}    
 
 
 class Campaigns extends Component {

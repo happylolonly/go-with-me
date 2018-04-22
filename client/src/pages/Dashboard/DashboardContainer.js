@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+
+import { API } from 'constants/config';
+
 
 import { Link } from 'react-router';
 
@@ -14,6 +18,19 @@ class Campaigns extends Component {
     this.state = {
     }
 
+  }
+
+  componentDidMount() {
+    this.getUser();
+  }
+
+  async getUser() {
+    const data = await axios.get(`${API}/user`);
+
+    const user = data.data;
+
+
+    this.setState({ user });
   }
 
   render() {
