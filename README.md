@@ -10,7 +10,7 @@
 https://go-with-me-spa.herokuapp.com/
 
 [Задачи](https://github.com/happylolonly/go-with-me/issues)  
-[Доска](https://github.com/happylolonly/go-with-me/projects)
+[Доска](https://github.com/happylolonly/go-with-me/projects/1)
 
 [VK API public](https://vk.com/public165270834) - вк паблик для отправки уведомлений (необходимо подписаться)
 
