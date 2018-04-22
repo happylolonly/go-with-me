@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Redirect } from 'react-router';
-import { Route, IndexRedirect } from 'react-router';
+import { Route, IndexRedirect, IndexRoute } from 'react-router';
 
 
 import App from './App';
@@ -18,23 +18,26 @@ import FriendPage from 'pages/Friend/FriendContainer';
 import EventsPage from 'pages/Events/EventsContainer';
 import EventPage from 'pages/Event/EventContainer';
 
+import LandingPage from 'pages/Landing/Landing';
+
 
 export default (
 	<Route path="/" component={App}>
 		{/* <IndexRedirect to="campaigns" /> */}
+		<IndexRoute components={LandingPage} />
 
 		<Route path="dashboard" components={DashboardPage} />
 
 		<Route path="lists" components={ListsPage} />
-		<Route path="lists/add" components={ListPage} />
+		<Route path="lists/new" components={ListPage} />
 		<Route path="lists/:id" components={ListPage} />
 
 		<Route path="friends" components={FriendsPage} />
-		<Route path="friends/add" components={FriendPage} />
+		<Route path="friends/new" components={FriendPage} />
 		<Route path="friends/:id" components={FriendPage} />
 
 		<Route path="events" components={EventsPage} />
-		<Route path="events/add" components={EventPage} />
+		<Route path="events/new" components={EventPage} />
 		<Route path="events/:id" components={EventPage} />
 		
 		{/* <Route path="*" components={NotFoundPage} /> */}
