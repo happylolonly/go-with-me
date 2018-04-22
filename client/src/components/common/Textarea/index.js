@@ -14,7 +14,7 @@ const propTypes = {
 
 };
 
-const Textarea = ({ value, text, name, placeholder, onChange, title }) => {
+const Textarea = ({ value, text, name, placeholder, onChange, title, error }) => {
 
     // debugger;
 
@@ -34,6 +34,9 @@ const Textarea = ({ value, text, name, placeholder, onChange, title }) => {
             placeholder={placeholder}
             onChange={handleChange}
             ></textarea>
+
+                    {error && <div className="error">{error}</div>}
+
       </div>
       
   );

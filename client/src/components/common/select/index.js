@@ -16,7 +16,7 @@ const propTypes = {
 
 };
 
-const Select = ({ value, text, name, placeholder, onChange, title, options }) => {
+const Select = ({ value, text, name, placeholder, onChange, title, options, error }) => {
 
     function handleChange(event) {
         const { value } = event.target;
@@ -53,6 +53,9 @@ const Select = ({ value, text, name, placeholder, onChange, title, options }) =>
             <option value="">Select {title && title.toLowerCase() || name}</option>
             {renderOptions()}
         </select>
+
+                {error && <div className="error">{error}</div>}
+
       </div>
       
   );

@@ -14,7 +14,7 @@ const propTypes = {
 
 };
 
-const Input = ({ value, text, name, placeholder, onChange, title }) => {
+const Input = ({ value, text, name, placeholder, onChange, title, error }) => {
 
     function handleChange(event) {
         const {value} = event.target;
@@ -32,6 +32,8 @@ const Input = ({ value, text, name, placeholder, onChange, title }) => {
             placeholder={placeholder}
             onChange={handleChange}
         />
+
+        {error && <div className="error">{error}</div>}
       </div>
       
   );
