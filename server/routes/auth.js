@@ -12,7 +12,7 @@ module.exports = app => {
     '/auth/google/callback',
     passport.authenticate('vkontakte'),
     (req, res) => {
-      res.redirect('http://localhost:3000/dashboard');
+      res.redirect('/dashboard');
     }
   );
 
