@@ -1,7 +1,6 @@
 {
-	"name": "events-free-spa",
+	"name": "go-with-me",
 	"version": "0.1.0",
-	"private": true,
 	"proxy": {
 		"/auth/google": {
 			"target": "http://localhost:3090"
