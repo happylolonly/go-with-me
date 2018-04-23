@@ -57,7 +57,10 @@ class Campaigns extends Component {
   async addFriend() {
 
     try {
-      await axios.post(`${API}/friends`, this.state.data);
+      await axios.post(`${API}/friends`, {
+          ...this.state.data,
+          source: 'vk',
+      });
 
       browserHistory.push('/friends');
 

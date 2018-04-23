@@ -11,7 +11,7 @@ export default app => {
     });
 
     app.post('/api/friends',requireLogin, async (req, res) => {
-        const { name, link } = req.body;
+        const { name, link , source } = req.body;
 
         const user = await User.findById(req.user._id);
 
@@ -23,7 +23,7 @@ export default app => {
 
             const f = await User.update({_id: req.user._id }, { friends: [
                 ...user.friends,
-                {name, link}
+                {name, link, source}
             ]});
             res.send(f);
 
