@@ -5,6 +5,8 @@ import User from '../models/User';
 
 import { Bot } from 'node-vk-bot'
 
+import vkId from './vkId';
+
 const token = '20a14540148556de06e7fb0c5abee74ae174df47de504ee14f6612eed349bba6a5793d5b03c5e27a04dc4';
   
 const bot = new Bot({
@@ -40,17 +42,21 @@ export default {
                 if (!friend) continue;
 
 
-                if (friend.link.includes('id')) {
+                if (friend.link.includes('/id')) {
                     friend.link = friend.link.split('id')[1];
+                } else {
+                    const id = await vkId(friend.link.split('vk.com/')[1]);
+                    friend.link = id;
                 }
                 friends.push(friend.link)
 
-            }   
+            }  
             
             friends.forEach(item => {
     
                 bot.send(`
                     Твой друг зовет тебя!
+                    ${title}
     
                     ${description}
                     
@@ -69,7 +75,6 @@ export default {
 // bot.get(/Hi|Hello|Hey/i, message => {
 //   const options =  { forward_messages: message.id }
 
-//   debugger;
 
 //   console.log(message.id)
  

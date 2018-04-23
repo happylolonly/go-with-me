@@ -40,12 +40,6 @@ class Campaigns extends Component {
   }
 
   handleChange(value, name) {
-
-        if (name === 'link') {
-            if (value.includes('vk.com')) {
-                value = value.split('.com/')[1];
-            } 
-        }
       this.setState({
           data: {
               ...this.state.data,
