@@ -9,8 +9,8 @@ import { Router, browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-import reducers from './reducers';
-import types from 'constants/types';
+// import reducers from './reducers';
+// import types from 'constants/types';
 import Routes from './routes';
 
 import './index.scss';
@@ -20,7 +20,7 @@ import registerServiceWorker from './registerServiceWorker';
 const logger = createLogger({ collapsed: true });
 
 const createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);
-const store = createStoreWithMiddleware(reducers);
+// const store = createStoreWithMiddleware(reducers);
 
 // const sources = JSON.parse(localStorage.getItem('events') || null);
 // const savedEvents = JSON.parse(localStorage.getItem('savedEvents') || null);
