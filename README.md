@@ -1,19 +1,31 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com) 
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
-[![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/makes-people-smile.svg)](https://forthebadge.com)
 
-[![Build Status](https://travis-ci.org/happylolonly/events-free-spa.svg?branch=dev)](https://travis-ci.org/happylolonly/events-free-spa)
-[![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://github.com/happylolonly)
+[![Build Status](https://travis-ci.org/happylolonly/go-with-me.svg?branch=master)](https://travis-ci.org/happylolonly/go-with-me)
+
+# Go with me
+## Приложение для быстрой отправки приглашений на мероприятия всем твоим друзьям!
+
+https://go-with-me-spa.herokuapp.com
+
+[Задачи](https://github.com/happylolonly/go-with-me/issues)  
+[Доска](https://github.com/happylolonly/go-with-me/projects/1)
+
+[VK API public](https://vk.com/public165270834) - вк паблик для отправки уведомлений (необходимо подписаться)
 
 
-# Events Free
-## SPA для собирания всех бесплатных мероприятий в одном месте
+Приложение позволяет создавать списки друзей с разных источников (вк, фейсбук, телеграм, почта и тд) и отправлять им всем приглашение на какое-нибудь мероприятие за один раз.
 
-https://eventsfree.by
+#### Запуск:
 
-Приложение автоматически собирает бесплатные мероприятия с различных сайтов, показывая все в одном месте.
+1. Скопировать репозиторий
+2. Поставить [Node.js](https://nodejs.org/en) (8+ версия)
+3. Из папки выполнить команду `npm install`
+4. Клиент - `npm start` и перейти на http://localhost:3000
+5. Сервер - `npm run ss` и перейти на http://localhost:3090
 
-Технологии:
+#### Технологии:
 
 Frontend:
 
@@ -26,14 +38,17 @@ Backend:
 - Node.js
 - Express
 - MongoDB
-- Redis
 
 Deploy:
 
 - Heroku
 - Travis CI
 
-![new mockup 1](https://user-images.githubusercontent.com/18665326/37930931-d368319e-314c-11e8-95e9-a119c628295b.png)
+Messages API:
+
+- VK
+- Facebook
+- ect. (in future)
 
 ##
 
