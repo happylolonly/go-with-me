@@ -5,7 +5,6 @@ import Footer from 'components/Footer/Footer';
 
 // import { renderRoutes } from 'react-router-config';
 import ErrorBondary from 'components/error-bondary';
-import OfflineBar from 'components/offline-bar';
 import { Link } from 'react-router'
 
 import './App.scss';
@@ -21,7 +20,6 @@ class App extends Component {
       <ErrorBondary>
         <div className="app">
           <Header />
-          <OfflineBar />
 
           <div className="content">
           <h2>Привет!</h2>
