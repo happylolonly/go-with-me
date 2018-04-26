@@ -42,7 +42,7 @@ export default {
                 if (!friend) continue;
 
 
-                if (friend.link.includes('/id')) {
+                if (friend.link.includes('/id') && Number.isInteger(+friend.link.split('/id')[1])) {
                     friend.link = friend.link.split('id')[1];
                 } else {
                     const id = await vkId(friend.link.split('vk.com/')[1]);
