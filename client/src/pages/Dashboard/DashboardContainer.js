@@ -36,7 +36,14 @@ class Dashboard extends Component {
         return (
             <div className="dashboard">
 
-                      <Header auth={this.props.auth} logout={this.props.logout}/>
+                      <Header
+                        auth={this.props.auth}
+                        logout={this.props.logout}
+
+                        firstName={this.props.user.data.firstName}
+                        lastName={this.props.user.data.lastName}
+                        avatar={this.props.user.data.avatar}
+                    />
 
 
                       <Link to="/dashboard">К доске</Link>
@@ -56,8 +63,8 @@ class Dashboard extends Component {
     }
 }
 
-const mapStateToProps = ({ auth }) => {
-    return { auth }
+const mapStateToProps = ({ auth, user }) => {
+    return { auth, user }
   }
 
 Dashboard.propTypes = propTypes;

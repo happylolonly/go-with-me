@@ -1,0 +1,14 @@
+.profile-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    span {
+        margin: 0 3px;
+    }
+
+    img {
+        margin-left: 10px;
+        border-radius: 50%;
+    }
+}
