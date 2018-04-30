@@ -28,9 +28,6 @@ const store = createStoreWithMiddleware(reducers);
 // const auth = JSON.parse(localStorage.getItem('auth') || null);
 // const savedEvents = JSON.parse(localStorage.getItem('savedEvents') || null);
 
-
-
-
 ReactDOM.hydrate(
 	<Provider store={store}>
 	    <Router history={browserHistory} routes={Routes} />
@@ -54,4 +51,4 @@ store.dispatch(auth());
 		// 	{/* <div>{renderRoutes(Routes)}</div> */}
 		// </BrowserRouter>
 
-// registerServiceWorker();
+registerServiceWorker();
