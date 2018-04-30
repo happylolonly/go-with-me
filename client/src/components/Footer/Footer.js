@@ -20,10 +20,10 @@ const Footer = () => {
           isShowCount={false}
         /> */}
 
-        <ul>
+        {/* <ul>
           <li>Email: hello@eventsfree.by</li>
           <li>Позвони нам: +375-29-11-999-40</li>
-        </ul>
+        </ul> */}
       </div>
 
       <p>© 2017 - {new Date().getFullYear()} Go with me. All rights reserved. Making with love <span>❤</span></p>
