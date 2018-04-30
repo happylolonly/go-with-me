@@ -19,7 +19,7 @@ const Events = ({ events, deleteEvent }) => {
             <h2>Мероприятия</h2>
             <p>Создавай мероприятия и все твои друзья узнают про него!</p>
 
-            <Link to="/events/new">Создать новое</Link>
+            <Link to="dashboard/events/new">Создать новое</Link>
 
             <EventsList
                 events={events}

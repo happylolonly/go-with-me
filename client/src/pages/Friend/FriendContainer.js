@@ -56,7 +56,7 @@ class Campaigns extends Component {
           source: 'vk',
       });
 
-      browserHistory.push('/friends');
+      browserHistory.push('dashboard/friends');
 
   } catch (error) {
       console.log(error);

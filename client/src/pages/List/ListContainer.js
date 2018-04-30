@@ -68,7 +68,7 @@ class Campaigns extends Component {
     try {
       await axios.post(`${API}/lists`, this.state.data);
 
-      browserHistory.push('/lists');
+      browserHistory.push('dashboard/lists');
 
   } catch (error) {
       console.log(error);

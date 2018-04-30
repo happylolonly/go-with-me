@@ -117,7 +117,7 @@ class EventContainer extends Component {
         try {
             await axios.delete(`${API}/events?id=${this.props.params.id}`);
 
-            browserHistory.push('/events');
+            browserHistory.push('dashboard/events');
         } catch (error) {
             console.log(error);
             this.setState({ serverError: JSON.stringify(error) });

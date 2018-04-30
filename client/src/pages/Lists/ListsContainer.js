@@ -42,7 +42,7 @@ componentDidMount() {
             <p>Добавить друзей в списки</p>
 
             {/* <button onClick>Add new</button> */}
-            <Link to="/lists/new">Создать список</Link>
+            <Link to="dashboard/lists/new">Создать список</Link>
 
             {this.state.lists.map(item => {
                 const { id, title } = item;

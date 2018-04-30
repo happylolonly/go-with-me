@@ -44,7 +44,7 @@ class Campaigns extends Component {
             <p>Добавь своих друзей с ссылками на них</p>
 
             {/* <button onClick>Add new</button> */}
-            <Link to="/friends/new">Добавить</Link>
+            <Link to="dashboard/friends/new">Добавить</Link>
 
             {this.state.friends.map(item => {
                 const { id, name } = item;

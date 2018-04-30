@@ -49,6 +49,10 @@ class Campaigns extends Component {
         </div>
     )
   }
+                <Link to="/dashboard/friends">Друзья</Link>
+                <Link to="/dashboard/lists">Списки</Link>
+                <Link to="/dashboard/events">Мероприятия</Link>
+                <Link to="/dashboard/profile">Твой профиль</Link>
 }
 
 // Campaigns.propTypes = propTypes;
