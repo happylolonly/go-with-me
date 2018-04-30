@@ -72,7 +72,7 @@ const Event = ({ title, link, description, list, titleError, linkError, listErro
                 error={listError}
             />
 
-            <Link to="/events">Вернуться</Link>
+            <Link to="dashboard/events">Вернуться</Link>
             <Button type="success" text={isNew ? 'Создать' : 'Изменить'} onClick={handleSubmit} />
             {!isNew && <Button type="danger" text="Удалить" onClick={deleteEvent} />}
         </div>

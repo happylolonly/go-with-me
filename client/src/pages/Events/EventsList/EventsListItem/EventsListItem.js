@@ -21,7 +21,7 @@ const EventsListItem = ({ id, title, deleteEvent }) => {
     return (
         <div className="events-list-item card">
             <h5>{title}</h5>
-            <Link to={`/events/${id}`}>Посмотреть</Link>
+            <Link to={`dashboard/events/${id}`}>Посмотреть</Link>
             <button className="delete" onClick={handleDelete}>Удалить</button>
         </div>
     );
