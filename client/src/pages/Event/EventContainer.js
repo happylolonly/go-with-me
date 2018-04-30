@@ -88,7 +88,7 @@ class EventContainer extends Component {
         try {
             await axios.post(`${API}/events`, this.state.data);
 
-            browserHistory.push('/events');
+            browserHistory.push('dashboard/events');
         } catch (error) {
             console.log(error);
             this.setState({ serverError: JSON.stringify(error) });
@@ -104,7 +104,7 @@ class EventContainer extends Component {
                 ...this.state.data
             });
 
-            browserHistory.push('/events');
+            browserHistory.push('dashboard/events');
         } catch (error) {
             console.log(error);
             this.setState({ serverError: JSON.stringify(error) });
