@@ -27,9 +27,12 @@ class ProfileContainer extends Component {
 
     render() {
         console.log(this.state);
+
+        const { firstName, lastName, avatar } = this.props.user.data;
         return (
             <div>
                 <p>{JSON.stringify(this.props.user.data && this.props.user.data.login)}</p>
+                <p>{firstName} {lastName} {avatar}</p>
             </div>
         )
     }
