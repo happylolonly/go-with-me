@@ -1,5 +1,19 @@
 .dashboard {
+    text-align: center;
+
     a {
         display: block;
+    }
+
+    .page {
+        padding: 10px 15%;
+    }
+
+    .links {
+
+        a {
+            margin: 10px;
+            display: inline-block;
+        }
     }
 }

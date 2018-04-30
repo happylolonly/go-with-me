@@ -52,12 +52,18 @@ class Dashboard extends Component {
                 <h2>Твоя доска</h2>
                 <p>Что будем делать?</p>
 
+                <div className="links">
                 <Link to="/dashboard/friends">Друзья</Link>
                 <Link to="/dashboard/lists">Списки</Link>
                 <Link to="/dashboard/events">Мероприятия</Link>
                 <Link to="/dashboard/profile">Твой профиль</Link>
+                </div>
 
-                {this.props.children}
+                <div className="page">
+                    {this.props.children}
+    
+                </div>
+
             </div>
         )
     }
