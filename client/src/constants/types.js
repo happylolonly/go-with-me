@@ -1,3 +1,11 @@
-export default {
-  
-};
+export const GET_USER_START = 'GET_USER_START';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_ERROR = 'GET_USER_ERROR';
+
+export const GET_AUTH_START = 'GET_AUTH_START';
+export const GET_AUTH_SUCCESS = 'GET_AUTH_SUCCESS';
+export const GET_AUTH_ERROR = 'GET_AUTH_ERROR';
+
+export const LOGOUT_START = 'LOGOUT_START';
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const LOGOUT_ERROR = 'LOGOUT_ERROR';
