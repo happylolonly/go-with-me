@@ -7,11 +7,15 @@ const eventSchema = require('./event');
 
 const userSchema = new Schema({
   id: String,
+  firstName: String,
+  lastName: String,
+  
+  login: Object,
+  avatar: String,
+
   friends: [friendSchema],
   lists: [listSchema],
   events: [eventSchema],
-  name: String,
-  login: Object,
 });
 
 const user = mongoose.model('users', userSchema);
