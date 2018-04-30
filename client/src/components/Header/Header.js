@@ -10,32 +10,19 @@ import './Header.scss';
 
 
 const propTypes = {
-
+    auth: PropTypes.object.isRequired,
+    logout: PropTypes.func.isRequired,
 }
 
-const Header = () => {
-  return (
-    <div className="header">
-      {/* <div className="title">
-        <span>Events Free</span>
-        <p>Все бесплатные мероприятия в одном месте</p>
-      </div>
-      <ul>
-        <li><Link to='/events'>Мероприятия</Link></li>
-        <li><Link to='/about'>О приложении</Link></li>
-        <li><Link to='/settings'>Настройки</Link></li>
-      </ul> */}
-
-      <button onClick={() => {
-        axios.get(`${API}/logout`);
-        setTimeout(() => {
-          window.location = '/';
-        }, 500);
-      }}>выйти</button>
-      <p>Go with me</p>
-      <p>шапка</p>
-    </div>
-  )
+const Header = ({ auth, logout }) => {
+    
+    return (
+        <div className="header">
+            <p>Go with me</p>
+            <p>Собери друзей на мероприятие быстро!</p>
+            {auth.authorized && <button onClick={logout}>Выйти</button>}
+        </div >
+    )
 }
 
 Header.propTypes = propTypes;
