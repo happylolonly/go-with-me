@@ -49,7 +49,7 @@ class Campaigns extends Component {
             {this.state.friends.map(item => {
                 const { id, name } = item;
                 return (
-                    <div>
+                    <div className="card">
                         <h5>{name}</h5>
                         {/* <Link to={`/friends/${id}`}>Посмотреть</Link> */}
                         <p>Изменить пока нельзя</p>

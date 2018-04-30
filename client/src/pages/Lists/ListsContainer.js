@@ -47,7 +47,7 @@ componentDidMount() {
             {this.state.lists.map(item => {
                 const { id, title } = item;
                 return (
-                    <div>
+                    <div className="card">
                         <h5>{title}</h5>
                         {/* <Link to={`/lists/${id}`}>Посмотреть</Link> */}
                         {/* <p> */}

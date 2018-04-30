@@ -19,10 +19,10 @@ const EventsListItem = ({ id, title, deleteEvent }) => {
     }
 
     return (
-        <div className="events-list-item">
+        <div className="events-list-item card">
             <h5>{title}</h5>
             <Link to={`/events/${id}`}>Посмотреть</Link>
-            <button onClick={handleDelete}>Удалить</button>
+            <button className="delete" onClick={handleDelete}>Удалить</button>
         </div>
     );
 }
