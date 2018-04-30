@@ -2,6 +2,7 @@ import Calendar from './calendar';
 import Input from './Input';
 import Textarea from './Textarea';
 import Select from './select';
+import Button from './Button';
 
 // export * from './Loader';
 // export * from './Checkbox';
@@ -12,4 +13,4 @@ import Select from './select';
 // export * from './calendar';
 
 
-export { Calendar, Input, Textarea, Select };
+export { Calendar, Input, Textarea, Select, Button };

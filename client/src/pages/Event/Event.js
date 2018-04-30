@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router';
-import { Input, Textarea, Select } from 'components/common';
+import { Input, Textarea, Select, Button } from 'components/common';
 
 import './Event.scss';
 
@@ -73,8 +73,8 @@ const Event = ({ title, link, description, list, titleError, linkError, listErro
             />
 
             <Link to="/events">Вернуться</Link>
-            <button onClick={handleSubmit}>{isNew ? 'Создать' : 'Изменить'}</button>
-            {!isNew && <button onClick={deleteEvent}>Удалить</button>}
+            <Button type="success" text={isNew ? 'Создать' : 'Изменить'} onClick={handleSubmit} />
+            {!isNew && <Button type="danger" text="Удалить" onClick={deleteEvent} />}
         </div>
     )
 }
