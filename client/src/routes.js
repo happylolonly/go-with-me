@@ -5,6 +5,8 @@ import { Route, IndexRedirect, IndexRoute } from 'react-router';
 
 import App from './App';
 
+import requireAuth from './pages/requireAuth';
+
 
 import DashboardPage from 'pages/Dashboard/DashboardContainer';
 
@@ -26,20 +28,21 @@ export default (
 		{/* <IndexRedirect to="campaigns" /> */}
 		<IndexRoute components={LandingPage} />
 
-		<Route path="dashboard" components={DashboardPage} />
+		<Route path="dashboard" components={requireAuth(DashboardPage)}>
+			<Route path="lists" components={ListsPage} />
+			<Route path="lists/new" components={ListPage} />
+			<Route path="lists/:id" components={ListPage} />
 
-		<Route path="lists" components={ListsPage} />
-		<Route path="lists/new" components={ListPage} />
-		<Route path="lists/:id" components={ListPage} />
+			<Route path="friends" components={FriendsPage} />
+			<Route path="friends/new" components={FriendPage} />
+			<Route path="friends/:id" components={FriendPage} />
 
-		<Route path="friends" components={FriendsPage} />
-		<Route path="friends/new" components={FriendPage} />
-		<Route path="friends/:id" components={FriendPage} />
+			<Route path="events" components={EventsPage} />
+			<Route path="events/new" components={EventPage} />
+			<Route path="events/:id" components={EventPage} />
 
-		<Route path="events" components={EventsPage} />
-		<Route path="events/new" components={EventPage} />
-		<Route path="events/:id" components={EventPage} />
-		
+		</Route>
+
 		{/* <Route path="*" components={NotFoundPage} /> */}
 	</Route>
 );

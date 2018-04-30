@@ -9,9 +9,12 @@ import { Router, browserHistory } from 'react-router';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
-// import reducers from './reducers';
+import reducers from './reducers';
 // import types from 'constants/types';
 import Routes from './routes';
+
+// import { browserHistory } from 'react-router';
+import { auth } from 'actions/auth';
 
 import './index.scss';
 
@@ -20,27 +23,32 @@ import registerServiceWorker from './registerServiceWorker';
 const logger = createLogger({ collapsed: true });
 
 const createStoreWithMiddleware = applyMiddleware(logger, thunk)(createStore);
-// const store = createStoreWithMiddleware(reducers);
+const store = createStoreWithMiddleware(reducers);
 
-// const sources = JSON.parse(localStorage.getItem('events') || null);
+// const auth = JSON.parse(localStorage.getItem('auth') || null);
 // const savedEvents = JSON.parse(localStorage.getItem('savedEvents') || null);
 
-// if (sources) {
-// 	store.dispatch({
-// 		type: types.SETUP_SOURCES,
-// 		payload: sources,
-// 	})
-// }
+
 
 
 ReactDOM.hydrate(
-	// <Provider store={store}>
-	    <Router history={browserHistory} routes={Routes} />,
+	<Provider store={store}>
+	    <Router history={browserHistory} routes={Routes} />
 
-	// </Provider>,
+ </Provider>,
   document.getElementById('root')
 );
 
+store.dispatch(auth());
+
+
+// if (auth) {
+// 	// store.dispatch({
+// 	// 	type: types.SETUP_SOURCES,
+// 	// 	payload: sources,
+// 	// })
+// 	browserHistory.push('/dashboard');
+// }
 
 		// <BrowserRouter routes={Routes}>
 		// 	{/* <div>{renderRoutes(Routes)}</div> */}
