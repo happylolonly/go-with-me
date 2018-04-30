@@ -18,7 +18,7 @@ export default (name) => {
 
         try {
             const users = await vk.api.users.get({ user_ids: name });
-            resolve(users[0].id);
+            resolve(users[0]);
         } catch (error) {
             console.log('VK get id error');
             resolve('');

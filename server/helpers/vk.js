@@ -15,6 +15,21 @@ const bot = new Bot({
   }).start()
 
 
+function greeting() {
+    const gr = [
+        'Хай',
+        'Привет',
+        'Хеллоу',
+        'Нихао',
+        'Прив',
+        'Здаров',
+    ];
+
+    const random = Math.floor(Math.random() * gr.length);
+
+    return gr[random];
+}
+
 export default {
     async send({title, description, link, list, id}) {
 
@@ -46,24 +61,27 @@ export default {
                     friend.link = friend.link.split('id')[1];
                 } else {
                     const id = await vkId(friend.link.split('vk.com/')[1]);
-                    friend.link = id;
+                    friend.link = id.id;
                 }
                 friends.push(friend.link)
 
-            }  
+            } 
+
+
+            let friend = '';
+
+            if (user.login.type === 'vk'); {
+                const d = await vkId(user.login.id);
+                const { first_name, last_name, id } = d;
+
+                friend = `@id${id} (${first_name} ${last_name})`;
+            }
             
             friends.forEach(item => {
     
                 bot.send(`
-                    Твой друг зовет тебя!
-                    ${title}
-    
-                    ${description}
-                    
-                    Ссылка: ${link}
-    
-                    Написать ему: https://vk.com/id91645893
-                `, item);
+                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link}    
+                `.trim(), item);
             });
 
             resolve();
