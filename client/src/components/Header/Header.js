@@ -20,9 +20,10 @@ const Header = ({ auth, logout, firstName, lastName, avatar }) => {
 
     return (
         <div className="header">
-            <p>Go with me</p>
-            <p>Собери друзей на мероприятие быстро!</p>
-            {auth.authorized && <button onClick={logout}>Выйти</button>}
+            <div>
+                <Link to="/">Go with me</Link>
+                <p>Собери друзей на мероприятие быстро!</p>
+            </div>
             <div className="profile-info-wrapper">
             {/* переименовать класс */}
                 <ProfileInfo
