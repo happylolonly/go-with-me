@@ -24,7 +24,8 @@ module.exports = {
     "^react-native$": "react-native-web",
     "^components(.*)$": "<rootDir>/client/src/components$1",
     "^actions(.*)$": "<rootDir>/client/src/actions$1",
-    "^constants(.*)$": "<rootDir>/client/src/constants$1"
+    "^constants(.*)$": "<rootDir>/client/src/constants$1",
+    "^pages(.*)$": "<rootDir>/client/src/pages$1",
   },
   "moduleFileExtensions": [
     "web.js",
