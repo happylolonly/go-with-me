@@ -21,6 +21,7 @@ import EventsPage from 'pages/Events/EventsContainer';
 import EventPage from 'pages/Event/EventContainer';
 
 import LandingPage from 'pages/Landing/Landing';
+import ProfilePage from 'pages/Profile/ProfileContainer';
 
 
 export default (
@@ -41,6 +42,7 @@ export default (
 			<Route path="events/new" components={EventPage} />
 			<Route path="events/:id" components={EventPage} />
 
+			<Route path="profile" components={ProfilePage} />
 		</Route>
 
 		{/* <Route path="*" components={NotFoundPage} /> */}
