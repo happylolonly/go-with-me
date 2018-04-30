@@ -1,60 +1,65 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-
-import { API } from 'constants/config';
+import { connect } from 'react-redux';
+import Header from 'components/Header/Header';
 
 
 import { Link } from 'react-router';
 
+import { getUser } from 'actions/user';
+import { logout } from 'actions/auth';
+
+
 import './DashboardContainer.scss';
 
 
+const propTypes = {
+    getUser: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+};
 
-class Campaigns extends Component {
-  constructor() {
-    super();
+class Dashboard extends Component {
+    constructor() {
+        super();
 
-    this.state = {
+        this.state = {
+        }
+
     }
 
-  }
-
-  componentDidMount() {
-    this.getUser();
-  }
-
-  async getUser() {
-    const data = await axios.get(`${API}/user`);
-
-    const user = data.data;
-
-    if (!user) {
-      window.location = '/'; // костыль
+    componentDidMount() {
+        this.props.getUser();
     }
 
-    this.setState({ user });
-  }
+    render() {
+        console.log(this.state);
+        return (
+            <div className="dashboard">
 
-  render() {
-    console.log(this.state);
-    return (
-        <div className="dashboard">
-            <h2>Твоя доска</h2>
-            <p>Что будем делать?</p>
+                      <Header auth={this.props.auth} logout={this.props.logout}/>
 
-            <Link to="/friends">Друзья</Link>
-            <Link to="/lists">Списки</Link>
-            <Link to="/events">Мероприятия</Link>
-        </div>
-    )
-  }
+
+                      <Link to="/dashboard">К доске</Link>
+
+
+                <h2>Твоя доска</h2>
+                <p>Что будем делать?</p>
+
                 <Link to="/dashboard/friends">Друзья</Link>
                 <Link to="/dashboard/lists">Списки</Link>
                 <Link to="/dashboard/events">Мероприятия</Link>
                 <Link to="/dashboard/profile">Твой профиль</Link>
+
+                {this.props.children}
+            </div>
+        )
+    }
 }
 
-// Campaigns.propTypes = propTypes;
+const mapStateToProps = ({ auth }) => {
+    return { auth }
+  }
 
-export default Campaigns;
+Dashboard.propTypes = propTypes;
+
+export default connect(mapStateToProps, { getUser, logout })(Dashboard);
