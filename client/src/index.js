@@ -18,7 +18,7 @@ import { auth } from 'actions/auth';
 
 import './index.scss';
 
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker, { unregisterSW } from './registerServiceWorker';
 
 const logger = createLogger({ collapsed: true });
 
@@ -54,3 +54,4 @@ if (window.location.pathname !== '/auth/google') {
 		// </BrowserRouter>
 
 // registerServiceWorker();
+unregisterSW();
