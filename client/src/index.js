@@ -53,4 +53,4 @@ if (window.location.pathname !== '/auth/google') {
 		// 	{/* <div>{renderRoutes(Routes)}</div> */}
 		// </BrowserRouter>
 
-registerServiceWorker();
+// registerServiceWorker();
