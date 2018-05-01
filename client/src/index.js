@@ -36,7 +36,9 @@ ReactDOM.hydrate(
   document.getElementById('root')
 );
 
-store.dispatch(auth());
+if (window.location.pathname !== '/auth/google') {
+	store.dispatch(auth());
+}
 
 
 // if (auth) {
