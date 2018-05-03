@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router';
-import SocialButtons from '../../components/SocialButtons/SocialButtons';
+import { generateShareIcon } from 'react-share';
 
 // import './DashboardContainer.scss';
 import './Landing.scss';
 
+const VKIcon = generateShareIcon('vk');
 
 class Campaigns extends Component {
   constructor() {
@@ -35,7 +36,7 @@ class Campaigns extends Component {
 
         <section className="login">
           <h2 className="login__title">Войти через соц. сети</h2>
-          <SocialButtons />
+          <a href="/auth/google" className="vk"><VKIcon size={65} round={true} /></a>
         </section>
 
         <section className="stages">
