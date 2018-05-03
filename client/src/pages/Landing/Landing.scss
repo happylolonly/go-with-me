@@ -25,12 +25,26 @@
 @media (min-width: 1000px) {
   .welcome__text {
     max-width: 1200px;
+    margin: 0 auto;
     padding-left: 60%;
 
     p {
       font-size: 20px;
       font-weight: bold;
     }
+  }
+}
+
+@media (min-width: 1300px) {
+  .welcome__text {
+    padding-left: 700px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .welcome {
+    padding-top: 11%;
+    padding-bottom: 11%;
   }
 }
 
