@@ -29,6 +29,53 @@ const server = app.listen(port, () => {
   console.log('Server ready on:', port);
 });
 
+
+
+const myPageAccessToken =  'EAADUBTfee4sBAFrgNqcRDVTC8dFUeGCzBO4HMoCgolH40JyLCPvdfwAhpYuWZC0ZBNjX1cvLmv5Cfd1eHZB25H6V0ZBfKDYgJxeYS1z1iGke4nYJvpId0XJ456WCUEJQR3mnPLNYyngEgb9U8L3S5vZAkU31XJ163PkBs3QLGxAZBAKf4msnaW'
+
+// var MessengerPlatform = require('facebook-bot-messenger');
+
+// // var app = require('express')();
+// // var server = require('http').Server(app);
+// var bot = MessengerPlatform.create({
+//   pageID: 204430280346743,
+//   appID: 233118877252491,
+//   appSecret: 'a264bedfdf947099f332d6649b5b66d8',
+//   validationToken: '<YOUR_VERIFY_TOKEN>123',
+//   pageToken: myPageAccessToken,
+// }, app);
+
+const http = require('http')
+const Bot = require('messenger-bot')
+ 
+let bot = new Bot({
+  token: myPageAccessToken,
+  verify: '<YOUR_VERIFY_TOKEN>123',
+  app_secret: 'a264bedfdf947099f332d6649b5b66d8'
+})
+ 
+bot.on('error', (err) => {
+  console.log(err.message)
+})
+ 
+bot.on('message', (payload, reply) => {
+  let text = payload.message.text
+ 
+  bot.getProfile(payload.sender.id, (err, profile) => {
+    if (err) throw err
+ 
+    reply({ text }, (err) => {
+      if (err) throw err
+ 
+      console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
+    })
+  })
+})
+ 
+app.use(bot.middleware());
+// http.createServer(bot.middleware()).listen(3000)
+console.log('Echo bot server running at port 3000.')
+
 const keys = {
   cookieKey: '123456',
 }
@@ -40,54 +87,11 @@ app.use(
   })
 );
 
-
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-
-
-
-
-
-
-// const API = require('node-vk-bot-api')
-
-// const bot = new API('')
-
-// bot.command('start', ({ reply }) => reply('This is start!'))
-// bot.hears(/(car|tesla)/, ({ reply }) => reply('I love Tesla!'))
-// bot.on(({ reply }) => reply('What?'))
-
-// bot.listen()
-
-
-
-
-// const FB =  require( 'facebook-messenger-bot');
-
-// const  { Bot, Elements} = FB;
- 
-// const bot = new Bot(myPageAccessToken, myVerification);
- 
-// bot.on('message', async message => {
-//     const {sender} = message;
-//     await sender.fetch('first_name');
- 
-//     const out = new Elements();
-//     out.add({text: `hey ${sender.first_name}, how are you!`});
- 
-//     await bot.send(sender.id, out);
-// });
- 
-// const app = express();
-// app.use('/facebook', bot.router());
-// app.listen(3000);
-
 require('./services/passport');
-
-
 
 
 db(mongoose);

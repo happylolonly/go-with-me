@@ -69,25 +69,25 @@ export default (app) => {
 
 
 
-const myPageAccessToken =  'EAADUBTfee4sBAFrgNqcRDVTC8dFUeGCzBO4HMoCgolH40JyLCPvdfwAhpYuWZC0ZBNjX1cvLmv5Cfd1eHZB25H6V0ZBfKDYgJxeYS1z1iGke4nYJvpId0XJ456WCUEJQR3mnPLNYyngEgb9U8L3S5vZAkU31XJ163PkBs3QLGxAZBAKf4msnaW'
+// const myPageAccessToken =  'EAADUBTfee4sBAFrgNqcRDVTC8dFUeGCzBO4HMoCgolH40JyLCPvdfwAhpYuWZC0ZBNjX1cvLmv5Cfd1eHZB25H6V0ZBfKDYgJxeYS1z1iGke4nYJvpId0XJ456WCUEJQR3mnPLNYyngEgb9U8L3S5vZAkU31XJ163PkBs3QLGxAZBAKf4msnaW'
 
-var MessengerPlatform = require('facebook-bot-messenger');
+// var MessengerPlatform = require('facebook-bot-messenger');
 
-// var app = require('express')();
-// var server = require('http').Server(app);
-var bot = MessengerPlatform.create({
-  pageID: 204430280346743,
-  appID: 233118877252491,
-  appSecret: 'a264bedfdf947099f332d6649b5b66d8',
-  validationToken: '<YOUR_VERIFY_TOKEN>123',
-  pageToken: myPageAccessToken,
-}, app);
-app.use(bot.webhook('/webhook'));
-bot.on(MessengerPlatform.Events.MESSAGE, function(userId, message) {
-    console.log('ds');
-    console.log(userId, message );
-  // add code below.
-});
+// // var app = require('express')();
+// // var server = require('http').Server(app);
+// var bot = MessengerPlatform.create({
+//   pageID: 204430280346743,
+//   appID: 233118877252491,
+//   appSecret: 'a264bedfdf947099f332d6649b5b66d8',
+//   validationToken: '<YOUR_VERIFY_TOKEN>123',
+//   pageToken: myPageAccessToken,
+// }, app);
+// app.use(bot.webhook('/webhook'));
+// bot.on(MessengerPlatform.Events.MESSAGE, function(userId, message) {
+//     console.log('ds');
+//     console.log(userId, message );
+//   // add code below.
+// });
 
 
   app.get('/', (req, res, next) => {
