@@ -13,7 +13,7 @@ import axios from 'axios';
 
 const passport = require('passport');
 
-// import tel from './helpers/tel';
+import tel from './helpers/tel';
 
 
 
@@ -96,7 +96,7 @@ const m  =  {
 };
 
 
-bot.sendMessage(r, m,  (err, info) => {
+bot.sendMessage('1673239386087268', m,  (err, info) => {
   console.log(err, info);
 })
 // http.createServer(bot.middleware()).listen(3000)

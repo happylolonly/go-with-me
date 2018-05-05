@@ -3,6 +3,7 @@ import User from '../models/User';
 
 
 import sendVk from '../helpers/vk';
+import telVk from '../helpers/tel';
 
 const requireLogin = require('../middlewares/requireLogin');
 
@@ -43,7 +44,14 @@ export default app => {
                 id: req.user._id
             });
 
-            debugger;
+            await telVk.send({
+                title,
+                description,
+                link,
+                list,
+                id: req.user._id
+            });
+
 
             // const user = await User.findById(req.user._id);
 
