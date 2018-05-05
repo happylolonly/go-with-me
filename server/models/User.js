@@ -12,6 +12,7 @@ const userSchema = new Schema({
   
   login: Object,
   avatar: String,
+  gender: String,
 
   friends: [friendSchema],
   lists: [listSchema],
