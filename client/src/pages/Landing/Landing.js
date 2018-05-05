@@ -8,6 +8,7 @@ import { generateShareIcon } from 'react-share';
 import './Landing.scss';
 
 const VKIcon = generateShareIcon('vk');
+const GoogleIcon = generateShareIcon('google');
 
 class Campaigns extends Component {
   constructor() {
@@ -36,7 +37,8 @@ class Campaigns extends Component {
 
         <section className="login">
           <h2 className="login__title">Войти через соц. сети</h2>
-          <a href="/auth/google" className="vk"><VKIcon size={65} round={true} /></a>
+          <a href="/auth/vk" className="vk"><VKIcon size={65} round={true} /></a>
+          <a href="/auth/google" className="vk"><GoogleIcon size={65} round={true} /></a>
         </section>
 
         <section className="stages">

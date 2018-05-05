@@ -2,7 +2,7 @@
 	"name": "go-with-me",
 	"version": "0.1.0",
 	"proxy": {
-		"/auth/google": {
+		"/auth/*": {
 			"target": "http://localhost:3090"
 		},
 		"/api/*": {
