@@ -7,10 +7,13 @@
 import mongoose from 'mongoose';
 const cookieSession = require('cookie-session');
 import path from 'path';
+import axios from 'axios';
 
 
 
 const passport = require('passport');
+
+import tel from './helpers/tel';
 
 
 
@@ -21,6 +24,8 @@ import db from './helpers/db';
 
 const app = express();
 const port = process.env.PORT || 3090;
+
+// var server = require('http').Server(app);
 
 require('./models/User');
 
@@ -126,3 +131,33 @@ require('./routes').default(app);
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, '/static/build/index.html'));
 });
+
+
+async function getId(name) {
+  // 
+  let page = await axios.get(`https://www.facebook.com/${name}`);
+
+  page = page.data;
+
+  const s = page.indexOf('entity_id');
+  const e = page.indexOf('&', s);
+
+  const id = page.substring(s + 10, e);
+
+  debugger;
+
+  
+
+  bot.sendMessage({id}, m,  (err, info) => {
+    console.log(err, info);
+  })
+
+  // const t = page.split('<div id="results">')[1].split('</div>');
+  // const s = t.indexOf('<b>');
+  // const e = t.indexOf('</b>');
+  // const id = t.substring(s, e);
+  // console.log(id);
+  // debugger;
+}
+
+getId('happylolonly');
