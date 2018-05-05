@@ -59,9 +59,16 @@ bot.on('error', (err) => {
 })
  
 bot.on('message', (payload, reply) => {
+
+  debugger;
+  console.log(payload, reply);
   let text = payload.message.text
  
   bot.getProfile(payload.sender.id, (err, profile) => {
+
+    console.log(err, profile)
+
+    // console.log()
     if (err) throw err
  
     reply({ text }, (err) => {
@@ -73,6 +80,20 @@ bot.on('message', (payload, reply) => {
 })
  
 app.use(bot.middleware());
+
+
+const r = {
+  "id": 1673239386087268,
+};
+
+const m  =  {
+  "text": "hello, world!"
+};
+
+
+bot.sendMessage(r, m,  (err, info) => {
+  console.log(err, info);
+})
 // http.createServer(bot.middleware()).listen(3000)
 console.log('Echo bot server running at port 3000.')
 
