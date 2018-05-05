@@ -56,6 +56,10 @@ export default {
                 // убрать костыль перенеся проверку на фронт
                 if (!friend) continue;
 
+                debugger;
+
+                if (friend.source !== 'vk') continue;
+
 
                 if (friend.link.includes('/id') && Number.isInteger(+friend.link.split('/id')[1])) {
                     friend.link = friend.link.split('id')[1];

@@ -7,7 +7,7 @@ import { API } from 'constants/config';
 import { browserHistory } from 'react-router';
 
 
-import { Input } from 'components/common';
+import { Input, Select } from 'components/common';
 
 const propTypes = {
     
@@ -21,7 +21,8 @@ class Campaigns extends Component {
     this.state = {
         data: {
             name: '',
-            link: ''
+            link: '',
+            source: ''
         }
     }
 
@@ -53,7 +54,6 @@ class Campaigns extends Component {
     try {
       await axios.post(`${API}/friends`, {
           ...this.state.data,
-          source: 'vk',
       });
 
       browserHistory.push('dashboard/friends');
@@ -96,13 +96,27 @@ class Campaigns extends Component {
                 value={this.state.data.name}
             />
 
+            <Select
+                title="Источник"
+                name="source"
+                placeholder="Источник"
+                onChange={this.handleChange}
+                value={this.state.data.source}
+                options={{
+                    vk: 'Vk',
+                    telegram: 'Телеграм',
+                }}
+            />
+
              <Input
-                title="Cсылка на друга"
+                title="Cсылка на друга (или ник в телеграме)"
                 name="link"
                 placeholder="Ссылка"
                 onChange={this.handleChange}
                 value={this.state.data.link}
             />
+
+            
 
             <button onClick={this.handleSubmit}>Добавить друга</button> 
         
