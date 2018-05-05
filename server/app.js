@@ -9,11 +9,12 @@ const cookieSession = require('cookie-session');
 import path from 'path';
 import axios from 'axios';
 
+import tel from './helpers/tel';
+
 
 
 const passport = require('passport');
 
-import tel from './helpers/tel';
 
 
 
@@ -50,57 +51,57 @@ const myPageAccessToken =  'EAADUBTfee4sBAFrgNqcRDVTC8dFUeGCzBO4HMoCgolH40JyLCPv
 //   pageToken: myPageAccessToken,
 // }, app);
 
-const http = require('http')
-const Bot = require('messenger-bot')
+// const http = require('http')
+// const Bot = require('messenger-bot')
  
-let bot = new Bot({
-  token: myPageAccessToken,
-  verify: '<YOUR_VERIFY_TOKEN>123',
-  app_secret: 'a264bedfdf947099f332d6649b5b66d8'
-})
+// let bot = new Bot({
+//   token: myPageAccessToken,
+//   verify: '<YOUR_VERIFY_TOKEN>123',
+//   app_secret: 'a264bedfdf947099f332d6649b5b66d8'
+// })
  
-bot.on('error', (err) => {
-  console.log(err.message)
-})
+// bot.on('error', (err) => {
+//   console.log(err.message)
+// })
  
-bot.on('message', (payload, reply) => {
+// bot.on('message', (payload, reply) => {
 
-  debugger;
-  console.log(payload, reply);
-  let text = payload.message.text
+//   debugger;
+//   console.log(payload, reply);
+//   let text = payload.message.text
  
-  bot.getProfile(payload.sender.id, (err, profile) => {
+//   bot.getProfile(payload.sender.id, (err, profile) => {
 
-    console.log(err, profile)
+//     console.log(err, profile)
 
-    // console.log()
-    if (err) throw err
+//     // console.log()
+//     if (err) throw err
  
-    reply({ text }, (err) => {
-      if (err) throw err
+//     reply({ text }, (err) => {
+//       if (err) throw err
  
-      console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
-    })
-  })
-})
+//       console.log(`Echoed back to ${profile.first_name} ${profile.last_name}: ${text}`)
+//     })
+//   })
+// })
  
-app.use(bot.middleware());
+// app.use(bot.middleware());
 
 
-const r = {
-  "id": '1673239386087268',
-};
+// const r = {
+//   "id": '1673239386087268',
+// };
 
-const m  =  {
-  "text": "hello, world!"
-};
+// const m  =  {
+//   "text": "hello, world!"
+// };
 
 
-bot.sendMessage('1673239386087268', m,  (err, info) => {
-  console.log(err, info);
-})
-// http.createServer(bot.middleware()).listen(3000)
-console.log('Echo bot server running at port 3000.')
+// bot.sendMessage('1673239386087268', m,  (err, info) => {
+//   console.log(err, info);
+// })
+// // http.createServer(bot.middleware()).listen(3000)
+// console.log('Echo bot server running at port 3000.')
 
 const keys = {
   cookieKey: '123456',
@@ -133,31 +134,31 @@ app.use((req, res, next) => {
 });
 
 
-async function getId(name) {
-  // 
-  let page = await axios.get(`https://www.facebook.com/${name}`);
+// async function getId(name) {
+//   // 
+//   let page = await axios.get(`https://www.facebook.com/${name}`);
 
-  page = page.data;
+//   page = page.data;
 
-  const s = page.indexOf('entity_id');
-  const e = page.indexOf('&', s);
+//   const s = page.indexOf('entity_id');
+//   const e = page.indexOf('&', s);
 
-  const id = page.substring(s + 10, e);
+//   const id = page.substring(s + 10, e);
 
-  debugger;
+//   debugger;
 
   
 
-  bot.sendMessage({id}, m,  (err, info) => {
-    console.log(err, info);
-  })
+//   bot.sendMessage({id}, m,  (err, info) => {
+//     console.log(err, info);
+//   })
 
-  // const t = page.split('<div id="results">')[1].split('</div>');
-  // const s = t.indexOf('<b>');
-  // const e = t.indexOf('</b>');
-  // const id = t.substring(s, e);
-  // console.log(id);
-  // debugger;
-}
+//   // const t = page.split('<div id="results">')[1].split('</div>');
+//   // const s = t.indexOf('<b>');
+//   // const e = t.indexOf('</b>');
+//   // const id = t.substring(s, e);
+//   // console.log(id);
+//   // debugger;
+// }
 
-getId('happylolonly');
+// getId('happylolonly');
