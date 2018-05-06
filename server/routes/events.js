@@ -4,6 +4,7 @@ import User from '../models/User';
 
 import sendVk from '../helpers/vk';
 import telVk from '../helpers/tel';
+import fb from '../helpers/fb';
 
 const requireLogin = require('../middlewares/requireLogin');
 
@@ -45,6 +46,14 @@ export default app => {
             });
 
             await telVk.send({
+                title,
+                description,
+                link,
+                list,
+                id: req.user._id
+            });
+
+            await fb.testSend({
                 title,
                 description,
                 link,
