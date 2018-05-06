@@ -105,6 +105,7 @@ class Campaigns extends Component {
                 options={{
                     vk: 'Vk',
                     telegram: 'Телеграм',
+                    facebook: 'Фейсбук'
                 }}
             />
 
