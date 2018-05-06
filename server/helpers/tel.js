@@ -73,8 +73,6 @@ export default {
 
         return new Promise( async (resolve, reject) => {
 
-            debugger;
-
             const user = (await User.findById(id)).toObject();
 
 
@@ -109,8 +107,6 @@ export default {
                 friends.push(friend.link)
 
             } 
-
-            debugger;
 
 
             let friend = '';

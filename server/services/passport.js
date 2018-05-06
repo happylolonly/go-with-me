@@ -66,7 +66,6 @@ passport.use(new VKontakteStrategy(
 
         const { name: { givenName: firstName, familyName: lastName }, photos, gender, profileUrl } = profile;
         console.log(profile);
-        debugger;
 
         const id = profile.id + '';
 
@@ -86,7 +85,6 @@ passport.use(new VKontakteStrategy(
 
 async function prossesUser(userData, source, done) {
     const { id, firstName, lastName, avatar, gender, src } = userData;
-    debugger;
 
     const existingUser = await User.findOne({ id: id });
 

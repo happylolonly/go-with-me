@@ -56,8 +56,6 @@ export default {
                 // убрать костыль перенеся проверку на фронт
                 if (!friend) continue;
 
-                debugger;
-
                 if (friend.source !== 'vk') continue;
 
 
