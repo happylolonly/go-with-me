@@ -25,7 +25,8 @@
 		"babel-node3": "set NODE_ENV=test&& babel-node --inspect ./server/app.js --out-file app2.js",
 		"babel-node2": "babel -d ./server/app.js --presets node6 --out-file ./server/app2.js",
 		"postinstall": "npm run build",
-		"ss": "npm run start-server"
+		"ss": "npm run start-server",
+		"webhook": "lt --port 3090 -s jskdjsdksaqkdsdsdssdsdwkql"
 	},
 	"dependencies": {
 		"async": "^2.5.0",
@@ -42,6 +43,7 @@
 		"facebook-bot-messenger": "^1.0.8",
 		"file-loader": "1.1.5",
 		"fs-extra": "3.0.1",
+		"localtunnel": "^1.9.0",
 		"lodash": "^4.17.4",
 		"messenger-bot": "^2.4.0",
 		"moment": "^2.18.1",
