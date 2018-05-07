@@ -38,7 +38,7 @@ class Campaigns extends Component {
         </section>
 
         <section>
-          <p>Группы на которые необходимо подписаться и отправить первый раз любое сообщение чтобы получать уведомления:</p>
+          <p>Группы на которые тебе (и друзьям) необходимо подписаться и отправить первый раз любое сообщение чтобы получать уведомления:</p>
           <a href="https://vk.com/bot_friendy" target="_blank">Vk</a> 
           <a href="https://www.facebook.com/Бот-Френди-204430280346743/" target="_blank">Facebook</a>
           <a href="https://web.telegram.org/#/im?p=@FrendyEventBot" target="_blank">Телеграм</a>
