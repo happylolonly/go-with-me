@@ -1,6 +1,6 @@
 {
-  "short_name": "Events Free",
-  "name": "Events Free - Все бесплатные мероприятия тут",
+  "short_name": "Go with me",
+  "name": "Go with me - Пригласи друзей на мероприятие быстро!",
   "start_url": "./index.html?pwa",
   "display": "fullscreen",
   "theme_color": "#ffe600",
