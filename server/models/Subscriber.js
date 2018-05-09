@@ -6,9 +6,12 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   userName: String,
+  chatId: String,
+
+  source: { type: String, required: [true] },
+
 });
 
-const user = mongoose.model('telegram', userSchema);
-
+const user = mongoose.model('subscriber', userSchema);
 
 export default user;

@@ -6,7 +6,7 @@ const token = '540810838:AAHxFaUQ0Onmy_8QLEroYKqyv-14tnQgjrc';
 // Create a bot that uses 'polling' to fetch new updates
 const bot = new TelegramBot(token, {polling: true});
 
-import Tel from '../models/Tel';
+import Subscriber from '../models/Subscriber';
 import User from '../models/User';
 
 
@@ -28,11 +28,11 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.on('message', async (msg) => {
   const { id, first_name: firstName, last_name: lastName, username: userName } = msg.chat;
 
-  const existingUser = await Tel.findOne({ id });
+  const existingUser = await Subscriber.findOne({ id, source: 'telegram' });
 
   if (existingUser) {
 
-    await Tel.findByIdAndUpdate(existingUser._id, {
+    await Subscriber.findByIdAndUpdate(existingUser._id, {
         firstName,
         lastName,
         userName
@@ -40,11 +40,12 @@ bot.on('message', async (msg) => {
 
   } else {
 
-    await new Tel({
+    await new Subscriber({
         id,
         firstName,
         lastName,
-        userName
+        userName,
+        source: 'telegram'
     }).save();
 
   }
@@ -120,7 +121,7 @@ export default {
 
             for (let item of friends) {
 
-                const user = await Tel.findOne({ userName: item });
+                const user = await Subscriber.findOne({ userName: item, source: 'telegram' });
 
                 if (!user) {
                     return;

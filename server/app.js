@@ -9,7 +9,7 @@ import path from 'path';
 import axios from 'axios';
 
 import db from './helpers/db';
-// import tel from './helpers/tel';
+
 
 const cookieSession = require('cookie-session');
 
@@ -58,3 +58,5 @@ require('./routes').default(app);
 app.use((req, res, next) => {
     res.sendFile(path.join(__dirname, '/static/build/index.html'));
 });
+
+

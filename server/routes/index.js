@@ -1,4 +1,4 @@
-import Fb from '../models/Fb';
+import Subscriber from '../models/Subscriber';
 import axios from 'axios';
 import fb from '../helpers/fb';
 
@@ -98,11 +98,11 @@ async function handleUser(text, profile, chatId, done) {
 
         const id = await getId(username);
 
-        const existingUser = await Fb.findOne({ id: id });
+        const existingUser = await Subscriber.findOne({ id: id, source: 'facebook' });
 
         if (existingUser) {
 
-            await Fb.findByIdAndUpdate(existingUser._id, {
+            await Subscriber.findByIdAndUpdate(existingUser._id, {
                 firstName,
                 lastName,
                 userName: username,
@@ -111,12 +111,13 @@ async function handleUser(text, profile, chatId, done) {
 
         } else {
 
-            await new Fb({
+            await new Subscriber({
                 id: id,
                 chatId,
                 firstName,
                 lastName,
-                userName: username
+                userName: username,
+                source: 'facebook'
             }).save();
 
         }

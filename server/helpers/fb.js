@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import Fb from '../models/Fb';
+import Subscriber from '../models/Subscriber';
 import User from '../models/User';
 
 
@@ -133,11 +133,7 @@ function greeting() {
 
                 item = item.split('https://www.facebook.com/')[1];
 
-                debugger;
-
-                const user = await Fb.findOne({ userName: item });
-
-                debugger;
+                const user = await Subscriber.findOne({ userName: item, source: 'facebook' });
 
                 if (!user) {
                     return;
