@@ -1,9 +1,12 @@
-import Friend from '../models/friend';
+// import Friend from '../models/friend';
 // import List from '../models/list';
 import User from '../models/User';
 
 
-import { Bot } from 'node-vk-bot'
+import { Bot } from 'node-vk-bot';
+
+import { processUser } from './s';
+
 
 import vkId from './vkId';
 
@@ -13,6 +16,24 @@ const bot = new Bot({
     token: token,
     // prefix: /^Bot[\s,]/
   }).start()
+
+//   /Hi|Hello|Hey/i,
+// /^(.|\n)*$/
+
+  bot.get(/./i, async message => {
+    const { user_id: id } = message;
+
+    const users = await bot.api('users.get', { user_ids: id });
+
+    const { first_name: firstName, last_name: lastName } = users[0];
+
+    // возможно перед сохранением проверить подписку
+    await processUser(id, { firstName, lastName }, 'vk');
+
+    bot.send('Привет! Пока нечего тебе ответить, но потом обязательно научусь.', message.peer_id);
+    bot.send('Но мы тебя сохранили, и ты можешь теперь получать приглашения от друзей!', message.peer_id);
+  });
+
 
 
 function greeting() {
