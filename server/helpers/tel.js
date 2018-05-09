@@ -9,6 +9,8 @@ const bot = new TelegramBot(token, {polling: true});
 import Subscriber from '../models/Subscriber';
 import User from '../models/User';
 
+import { processUser } from './s';
+
 
 // Matches "/echo [whatever]"
 bot.onText(/\/echo (.+)/, (msg, match) => {
@@ -28,27 +30,7 @@ bot.onText(/\/echo (.+)/, (msg, match) => {
 bot.on('message', async (msg) => {
   const { id, first_name: firstName, last_name: lastName, username: userName } = msg.chat;
 
-  const existingUser = await Subscriber.findOne({ id, source: 'telegram' });
-
-  if (existingUser) {
-
-    await Subscriber.findByIdAndUpdate(existingUser._id, {
-        firstName,
-        lastName,
-        userName
-    });
-
-  } else {
-
-    await new Subscriber({
-        id,
-        firstName,
-        lastName,
-        userName,
-        source: 'telegram'
-    }).save();
-
-  }
+  await processUser(id, { firstName, lastName, userName }, 'telegram');
 
   bot.sendMessage(id, 'Received your message');
 });
