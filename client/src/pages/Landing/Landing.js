@@ -2,13 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router';
-import { generateShareIcon } from 'react-share';
 
 // import './DashboardContainer.scss';
 import './Landing.scss';
-
-const VKIcon = generateShareIcon('vk');
-const GoogleIcon = generateShareIcon('google');
 
 class Campaigns extends Component {
   constructor() {
@@ -33,13 +29,13 @@ class Campaigns extends Component {
 
         <section className="login">
           <h2 className="login__title">Войти через соц. сети</h2>
-          <a href="/auth/vk" className="vk"><VKIcon size={65} round={true} /></a>
-          <a href="/auth/google" className="vk"><GoogleIcon size={65} round={true} /></a>
+          <a href="/auth/vk" className="vk"><img src="/images/vk.svg" alt="vk"/></a>
+          <a href="/auth/google" className="vk"><img src="/images/google.svg" alt="google"/></a>
         </section>
 
         <section>
           <p>Группы на которые тебе (и друзьям) необходимо подписаться и отправить первый раз любое сообщение чтобы получать уведомления:</p>
-          <a href="https://vk.com/bot_friendy" target="_blank">Vk</a> 
+          <a href="https://vk.com/bot_friendy" target="_blank">Vk</a>
           <a href="https://www.facebook.com/Бот-Френди-204430280346743/" target="_blank">Facebook</a>
           <a href="https://web.telegram.org/#/im?p=@FrendyEventBot" target="_blank">Телеграм</a>
           <a href="#">Viber (скоро)</a>
