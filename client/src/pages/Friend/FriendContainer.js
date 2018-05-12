@@ -63,7 +63,7 @@ class Campaigns extends Component {
 
     if (name === 'link') {
 
-        if (value) {
+        if (value && this.detectSource(value) !== 'vk') {
             this.checkFriend(value);
         }
 
