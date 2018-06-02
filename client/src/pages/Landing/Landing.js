@@ -33,12 +33,14 @@ class Campaigns extends Component {
           <a href="/auth/google" className="vk"><img src="/images/google.svg" alt="google"/></a>
         </section>
 
-        <section>
+        <section className="groups">
           <p>Группы на которые тебе (и друзьям) необходимо подписаться и отправить первый раз любое сообщение чтобы получать уведомления:</p>
           <a href="https://vk.com/bot_friendy" target="_blank">Vk</a>
           <a href="https://www.facebook.com/Бот-Френди-204430280346743/" target="_blank">Facebook</a>
           <a href="https://web.telegram.org/#/im?p=@FrendyEventBot" target="_blank">Телеграм</a>
           <a href="#">Viber (скоро)</a>
+
+          <p>на дизайн сайта нету времени ;)</p>
         </section>
 
         <section className="stages">
@@ -54,6 +56,11 @@ class Campaigns extends Component {
               <p class="how-we-work__title">Все друзья получают уведомления</p>
             </li>
           </ul>
+        </section>
+
+        <section className="preview">
+          <p>вот такие уведомления тебе будут приходить</p>
+          <img src="/images/preview.jpg" alt=""/>
         </section>
       </div>
     )

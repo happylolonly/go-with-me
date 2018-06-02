@@ -16,7 +16,7 @@
   }
 
   @media (min-width: 1000px) {
-    background: fixed linear-gradient(to right, transparent 0%, transparent 40%, #fff00085 100%), url('/images/girl.jpg') no-repeat center;
+    background: fixed linear-gradient(to right, transparent 0%, transparent 40%, #fff00085 100%), url('/images/main.jpg') no-repeat center;
     background-size: cover;
     min-height: 600px;
     padding: 8% 10px;
@@ -167,5 +167,23 @@
   .how-we-work__title {
     margin-top: 0;
     margin-left: 0;
+  }
+}
+
+.preview {
+  p {
+    text-align: center;
+  }
+  img {
+    width: 50%;
+    display: block;
+    margin: 10px auto;
+  }
+}
+
+.groups {
+  a {
+    display: block;
+    margin: 10px;
   }
 }
