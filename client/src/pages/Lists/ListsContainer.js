@@ -8,56 +8,77 @@ import { Link } from 'react-router';
 
 
 class Campaigns extends Component {
-  constructor() {
-    super();
+    constructor() {
+        super();
 
-    this.state = {
-        lists: []
+        this.state = {
+            lists: []
+        }
     }
-}
 
-componentDidMount() {
-    this.loadLists();
-}
+    componentDidMount() {
+        this.loadLists();
+    }
 
     async loadLists() {
 
         try {
-        const data = await axios.get(`${API}/lists`);
-    
-        const lists = data.data;
-        this.setState({ lists })
-    } catch (error) {
-        console.log(error);
+            const data = await axios.get(`${API}/lists`);
+
+            const lists = data.data;
+            this.setState({ lists })
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 
-}
+    async handleDelete(id) {
+        this.deleteList(id);
+    }
 
 
-  render() {
-    console.log(this.state);
-    return (
-        <div>
-            <h2>Списки</h2>
-            <p>Добавить друзей в списки</p>
+    async deleteList(id) {
+        try {
+            await axios.delete(`${API}/list`, {
+                params: {
+                    id,
+                }
+            });
 
-            {/* <button onClick>Add new</button> */}
-            <Link to="dashboard/lists/new">Создать список</Link>
+            this.loadLists();
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-            {this.state.lists.map(item => {
-                const { id, title } = item;
-                return (
-                    <div className="card">
-                        <h5>{title}</h5>
-                        {/* <Link to={`/lists/${id}`}>Посмотреть</Link> */}
-                        {/* <p> */}
-                    </div>
-                )
-            })}
-        
-        </div>
-    )
-  }
+
+    render() {
+        console.log(this.state);
+        return (
+            <div>
+                <h2>Списки</h2>
+                <p>Добавить друзей в списки</p>
+
+                {/* <button onClick>Add new</button> */}
+                <Link to="dashboard/lists/new">Создать список</Link>
+
+                {this.state.lists.map(item => {
+                    const { _id, title } = item;
+                    return (
+                        <div className="card">
+                            <h5>{title}</h5>
+                            <Link to={`/dashboard/lists/${_id}`}>Посмотреть</Link>
+                            {/* <p> */}
+                            {/* <button onClick={() => this.handleDelete(_id)}>Удалить</button> */}
+
+                        </div>
+                    )
+                })}
+
+            </div>
+        )
+    }
 }
 
 // Campaigns.propTypes = propTypes;
