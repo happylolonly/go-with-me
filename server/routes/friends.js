@@ -14,6 +14,34 @@ export default app => {
         res.send(user.friends);
     });
 
+    app.get('/api/friend', requireLogin,  async (req, res) => {
+        const user = await User.findById(req.user._id);
+
+        const { id } = req.query;
+
+        const friend = user.toObject().friends.find(item => item._id.toString() === id);
+
+        res.send(friend);
+    });
+
+    app.delete('/api/friend', requireLogin,  async (req, res) => {
+        const user = await User.findById(req.user._id)
+
+        const { id } = req.query;
+
+        // const list = user.lists.find(item => item._id === id);
+
+
+        const friends = user.friends.filter(item => item._id.toString() !== id);
+
+        const f = await User.update({_id: req.user._id }, { friends: 
+            friends   });
+
+        res.send('success');
+
+        // res.send(list);
+    });
+
     app.post('/api/friend-check', requireLogin,  async (req, res) => {
         const { value: link } = req.body;
 
@@ -53,6 +81,39 @@ export default app => {
                 {name, link, source}
             ]});
             res.send(f);
+
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    });
+
+    app.put('/api/friend', requireLogin, async (req, res) => {
+        const { name, link , source, id } = req.body;
+
+
+        const user = await User.findById(req.user._id);
+
+        const friends = user.toObject().friends;
+
+        let friend = friends.find(item => item._id.toString() === id);
+        
+        // list = 
+
+        const index = friends.indexOf(friend);
+
+        friends[index] = { ...friend, name, link, source };
+
+
+        // const list = new List({title, friends        });
+
+        try {
+
+            const f = await User.update({_id: req.user._id }, { friends: [
+                ...friends,
+            ]});
+            res.send(f);
+
 
         } catch (error) {
             console.log(error);

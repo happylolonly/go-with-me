@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import { API } from 'constants/config';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 
 import { Input, Select, Modal, Textarea } from 'components/common';
@@ -15,8 +15,8 @@ const propTypes = {
 
 
 class Campaigns extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
         data: {
@@ -27,7 +27,9 @@ class Campaigns extends Component {
         hasFriend: null,
     }
 
-    // this.isNew = this.props.params.id.includes('new');
+    this.isNew = !this.props.params.id;
+
+    this.deleteFriend = this.deleteFriend.bind(this);
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -35,10 +37,9 @@ class Campaigns extends Component {
 
   componentDidMount() {
 
-    if (this.isNew) {
-        // this.loadFriend();
+    if (!this.isNew) {
+        this.loadFriend();
     }
-
   }
 
   detectSource(link) {
@@ -55,7 +56,7 @@ class Campaigns extends Component {
         //
     }
 
-    return source;
+    return source || '';
   }
 
   handleChange(value, name) {
@@ -103,11 +104,34 @@ class Campaigns extends Component {
 }
 
   handleSubmit() {
-      const { name, link } = this.state.data;
-      if (name && link) {
-          this.addFriend();
+      const { name, link , source } = this.state.data;
+      if (name && link && source) {
+
+        if (this.isNew) {
+            this.addFriend();
+
+        } else {
+            this.updateFriend();
+
+        }
       }
   }
+
+  async updateFriend() {
+
+    try {
+        await axios.put(`${API}/friend`, {
+            id: this.props.params.id,
+            ...this.state.data
+        });
+
+        browserHistory.push('dashboard/friends');
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
   renderFriendInfo(value) {
 
@@ -142,16 +166,43 @@ class Campaigns extends Component {
   }
   
 
-//   async loadFriend() {
+  async loadFriend() {
 
-//     try {
-//       const data = await axios.get(`${API}/friend`);
-  
-//       const friend = data.data;
-//       this.setState({ friends })
-//   } catch (error) {
-//       console.log(error);
-//   }
+    try {
+      const data = await axios.get(`${API}/friend`, {
+          params: {
+              id: this.props.params.id
+          }
+      });
+        
+      const { name, link, source } = data.data;
+      this.setState({ data: {
+        name,
+        link,
+        source,
+      } })
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+
+async deleteFriend() {
+
+    try {
+        await axios.delete(`${API}/friend`, {
+            params: {
+                id: this.props.params.id,
+            }
+        });
+
+        browserHistory.push('dashboard/friends');
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
 
 
 
@@ -168,7 +219,7 @@ class Campaigns extends Component {
             />
 
             <Input
-                title="Cсылка на друга (или ник в телеграме)"
+                title="Cсылка на друга"
                 name="link"
                 placeholder="Ссылка"
                 onChange={this.handleChange}
@@ -190,7 +241,10 @@ class Campaigns extends Component {
                 }}
             />
 
-            <button onClick={this.handleSubmit}>Добавить друга</button> 
+            <button onClick={this.handleSubmit}>{this.isNew ? 'Добавить друга' : 'Изменить друга'}</button>
+            {!this.isNew && <button onClick={this.deleteFriend}>Удалить друга</button>}
+
+            <Link to={`/dashboard/friends`}>Вернуться</Link>
 
             {this.state.isModalShow &&
                 <Modal close={() => this.setState({ isModalShow: false })}>

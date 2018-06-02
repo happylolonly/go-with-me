@@ -37,6 +37,24 @@ class Campaigns extends Component {
 
   }
 
+
+  async deleteFriend(id) {
+
+    try {
+        await axios.delete(`${API}/friend`, {
+            params: {
+                id,
+            }
+        });
+
+
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
+
   render() {
     return (
         <div>
@@ -44,15 +62,16 @@ class Campaigns extends Component {
             <p>Добавь своих друзей с ссылками на них</p>
 
             {/* <button onClick>Add new</button> */}
-            <Link to="dashboard/friends/new">Добавить</Link>
+            <Link to="/dashboard/friends/new">Добавить</Link>
 
             {this.state.friends.map(item => {
-                const { id, name } = item;
+                const { _id, name } = item;
                 return (
                     <div className="card">
                         <h5>{name}</h5>
-                        {/* <Link to={`/friends/${id}`}>Посмотреть</Link> */}
-                        <p>Изменить пока нельзя</p>
+                        <Link to={`/dashboard/friends/${_id}`}>Посмотреть</Link>
+                        {/* <button onClick={() => this.handleDelete(_id)}>Удалить</button> */}
+
                     </div>
                 )
             })}
