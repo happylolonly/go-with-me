@@ -103,13 +103,18 @@ export default {
 
             for (let item of friends) {
 
-                const user = await Subscriber.findOne({ userName: item, source: 'telegram' });
+                let use = await Subscriber.findOne({ userName: item, source: 'telegram' });
 
-                if (!user) {
-                    return;
+                if (!use) {
+                    use = await Subscriber.findOne({ id: +item, source: 'telegram' });
+
+                    if (!use) {
+                        continue;
+                    }
+
                 }
     
-                bot.sendMessage(user.id, `
+                bot.sendMessage(use.id, `
                     ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link}    
                 `.trim());
             };
