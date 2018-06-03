@@ -34,3 +34,10 @@ export async function processUser(id, data, source) {
     });
 
 }
+
+
+export function inviteFriends() {
+    const random = Math.random();
+
+    return random > 0.70 ? '\n \n Пригласи своих друзей куда-нибудь тоже на http://gowithme.surge.sh/': '';
+}

@@ -3,6 +3,8 @@ import axios from 'axios';
 import Subscriber from '../models/Subscriber';
 import User from '../models/User';
 
+import { inviteFriends } from './s';
+
 
 
 const TOKEN = 'EAADUBTfee4sBAJfwhfwFGwZBwZAPjK2WrlXIlMce29Oizta2GA5AHvRmx5swxSIDaWwms3ZB0ADWZCvsR1t1I8U32q3nOwPXe3JQyFn3qo9pCG1tFisIktqDiNeae03YsBpsmbA6RnwkX1cllgNcpswFGKtDqx13Ew091bZCJWZBrSfGMXVr4O';
@@ -140,7 +142,7 @@ function greeting() {
                 }
     
                 sendMessage(user.chatId, `
-                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link}    
+                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link} ${inviteFriends()}  
                 `.trim());
             };
 

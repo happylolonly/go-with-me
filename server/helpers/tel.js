@@ -9,7 +9,7 @@ const bot = new TelegramBot(token, {polling: true});
 import Subscriber from '../models/Subscriber';
 import User from '../models/User';
 
-import { processUser } from './s';
+import { processUser, inviteFriends } from './s';
 
 
 // Matches "/echo [whatever]"
@@ -115,7 +115,7 @@ export default {
                 }
     
                 bot.sendMessage(use.id, `
-                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link}    
+                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link} ${inviteFriends()}   
                 `.trim());
             };
 

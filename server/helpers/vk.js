@@ -5,7 +5,7 @@ import User from '../models/User';
 
 import { Bot } from 'node-vk-bot';
 
-import { processUser } from './s';
+import { processUser, inviteFriends } from './s';
 
 
 import vkId from './vkId';
@@ -103,7 +103,7 @@ export default {
             friends.forEach(item => {
     
                 bot.send(`
-                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link}    
+                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link} ${inviteFriends()}   
                 `.trim(), item);
             });
 
