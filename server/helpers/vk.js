@@ -2,6 +2,9 @@
 // import List from '../models/list';
 import User from '../models/User';
 
+import Subscriber from '../models/Subscriber';
+
+
 
 import { Bot } from 'node-vk-bot';
 
@@ -11,7 +14,7 @@ import { processUser, inviteFriends } from './s';
 import vkId from './vkId';
 
 const token = '20a14540148556de06e7fb0c5abee74ae174df47de504ee14f6612eed349bba6a5793d5b03c5e27a04dc4';
-  
+
 const bot = new Bot({
     token: token,
     // prefix: /^Bot[\s,]/
@@ -27,11 +30,24 @@ const bot = new Bot({
 
     const { first_name: firstName, last_name: lastName } = users[0];
 
-    // возможно перед сохранением проверить подписку
-    await processUser(id, { firstName, lastName }, 'vk');
+    const existingUser = await Subscriber.findOne({ id, source: 'vk' });
 
-    bot.send('Привет! Пока нечего тебе ответить, но потом обязательно научусь.', message.peer_id);
-    bot.send('Но мы тебя сохранили, и ты можешь теперь получать приглашения от друзей!', message.peer_id);
+    if (existingUser) {
+
+      const phraces = [
+        'У меня пока нету нейросетей - не могу ответить тебе что-нибудь по делу',
+        'Я рад что ты мне пишешь, но лучше напиши тому кто тебя позвал на мероприятие',
+        '!@#$%^&*@%&%#@#@&#@$^#@',
+        'Эй, не сломай меня!'
+      ];
+
+      bot.send(phraces[Math.floor(Math.random() * phraces.length)], message.peer_id);
+      await processUser(id, { firstName, lastName }, 'vk'); // пересохранить
+    } else {
+      await processUser(id, { firstName, lastName }, 'vk');
+      bot.send('Привет! Круто что ты мне написал! Я тебя сохранил, теперь ты можешь получать приглашения от друзей!', message.peer_id);
+    }
+
   });
 
 
@@ -88,7 +104,7 @@ export default {
                 }
                 friends.push(friend.link)
 
-            } 
+            }
 
 
             let friend = '';
@@ -99,11 +115,11 @@ export default {
 
                 friend = `@id${id} (${first_name} ${last_name})`;
             }
-            
+
             friends.forEach(item => {
-    
+
                 bot.send(`
-                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link} ${inviteFriends()}   
+                    ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link} ${inviteFriends()}
                 `.trim(), item);
             });
 
@@ -111,14 +127,14 @@ export default {
 
         });
 
-       
+
 
 // bot.get(/Hi|Hello|Hey/i, message => {
 //   const options =  { forward_messages: message.id }
 
 
 //   console.log(message.id)
- 
+
 //   bot.send('Hello!', message.peer_id, options)
 // })
 
