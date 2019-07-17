@@ -55,6 +55,7 @@
 		"node-horseman": "^3.3.0",
 		"node-telegram-bot-api": "^0.30.0",
 		"node-vk-bot": "^0.2.6",
+		"node-vk-bot-api": "^2.4.11",
 		"nodemailer": "^4.0.1",
 		"nodemon": "^1.12.1",
 		"object-assign": "4.1.1",
