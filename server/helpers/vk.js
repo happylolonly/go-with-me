@@ -120,7 +120,7 @@ export default {
       }
 
       friends.forEach(item => {
-        bot.send(
+        bot2.send(
           `
                     ${greeting()}! Твой друг ${friend} зовет тебя на ${title}! \n ${description} \n Ссылка: ${link} ${inviteFriends()}
                 `.trim(),
