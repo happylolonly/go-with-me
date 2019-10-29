@@ -48,7 +48,7 @@
 		"messenger-bot": "^2.4.0",
 		"moment": "^2.18.1",
 		"moment-timezone": "^0.5.13",
-		"mongoose": "^4.11.5",
+		"mongoose": "^5.7.7",
 		"morgan": "^1.8.2",
 		"newrelic": "^2.2.0",
 		"node-cron": "^1.2.0",
